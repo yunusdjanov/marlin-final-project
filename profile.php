@@ -30,8 +30,6 @@ $id = $user->data()->id;
                     'status' => Input::get('status')
                 ]);
                 Redirect::to('profile.php');
-                Session::flash('success' , 'Профиль обновлен');
-                echo "<div class='alert alert-success'>".   Session::flash('success') ."</div>" ;
             } else {
                 foreach ($validate->errors() as $error) {
                     echo  '<div class="alert alert-danger"><ul><li>' . $error . '</li></ul></div>' ;
@@ -98,7 +96,6 @@ $id = $user->data()->id;
         </ul>
     </div>
 </nav>
-
 <div class="container">
     <div class="row">
         <div class="col-md-8">

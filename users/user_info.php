@@ -1,10 +1,7 @@
 <?php
 require_once "../init.php";
 $user = new User;
-if (!$user->isLoggedIn()){
-    $user->logout();
-    Redirect::to('../index.php');
-}elseif(!$user->hasPermissons('admin')){
+if(!$user->hasPermissons('admin')){
     $user->logout();
     Redirect::to('../index.php');
 }

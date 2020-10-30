@@ -5,6 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/users/delete.php" beforeDir="false" afterPath="$PROJECT_DIR$/users/delete.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/users/edit.php" beforeDir="false" afterPath="$PROJECT_DIR$/users/edit.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/users/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/users/user_info.php" beforeDir="false" afterPath="$PROJECT_DIR$/users/user_info.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -47,7 +48,9 @@
       <workItem from="1603457595097" duration="11071000" />
       <workItem from="1603534954189" duration="3418000" />
       <workItem from="1603963359851" duration="24124000" />
-      <workItem from="1604038521842" duration="269000" />
+      <workItem from="1604038521842" duration="718000" />
+      <workItem from="1604039589027" duration="311000" />
+      <workItem from="1604041772566" duration="644000" />
     </task>
     <servers />
   </component>

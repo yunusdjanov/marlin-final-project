@@ -28,9 +28,8 @@ if ($user->isLoggedIn() && $user->hasPermissons('admin')){
                         'username' => Input::get('username'),
                         'status' => Input::get('status')
                     ], $id);
-                    Redirect::to('index.php');
                     Session::flash('success', 'Профиль обновлен');
-                    echo "<div class='alert alert-success'>" . Session::flash('success') . "</div>";
+                    Redirect::to('index.php');
                 } else {
                     foreach ($validate->errors() as $error) {
                         echo '<div class="alert alert-danger"><ul><li>' . $error . '</li></ul></div>';

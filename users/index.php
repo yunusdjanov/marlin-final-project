@@ -1,10 +1,7 @@
 <?php
 require_once "../init.php";
 $user = new User;
-if (!$user->isLoggedIn()){
-    $user->logout();
-    Redirect::to('../index.php');
-}elseif(!$user->hasPermissons('admin')){
+if(!$user->hasPermissons('admin')){
     $user->logout();
     Redirect::to('../index.php');
 }
@@ -50,7 +47,13 @@ if (!$user->isLoggedIn()){
         </ul>
     </div>
 </nav>
-
+<?php
+if (Session::exists('success')){
+    echo "<div class='alert alert-success'>" . Session::flash('success') . "</div>";
+}elseif (Session::exists('danger')){
+    echo "<div class='alert alert-danger'>" . Session::flash('danger') . "</div>";
+}
+?>
 <div class="container">
     <div class="col-md-12">
         <h1>Пользователи</h1>
