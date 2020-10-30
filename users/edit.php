@@ -1,51 +1,50 @@
 <?php
 require_once "../init.php";
 $user = new User;
-if (!$user->isLoggedIn()){
-    $user->logout();
-    Redirect::to('../index.php');
-}elseif(!$user->hasPermissons('admin')){
-    $user->logout();
-    Redirect::to('../index.php');
-}
+if ($user->isLoggedIn() && $user->hasPermissons('admin')){
 
-
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
-    $users = Database::getInstance()->get('users', ['id', '=', $id]);
-    foreach ($users->results() as $result) {
-        $username = $result->username;
-        $status = $result->status;
-    }
-    if (Input::exists()) {
-        $validate = new Validate();
-        $validate->check($_POST, [
-            'username' => [
-                'required' => true,
-                'min' => 2
-            ],
-            'status' => [
-                'required' => true,
-                'min' => 10
-            ]
-        ]);
-        if (Token::check(Input::get('token'))) {
-            if ($validate->passed()) {
-                $user->update([
-                    'username' => Input::get('username'),
-                    'status' => Input::get('status')
-                ], $id);
-                Redirect::to('index.php');
-                Session::flash('success', 'Профиль обновлен');
-                echo "<div class='alert alert-success'>" . Session::flash('success') . "</div>";
-            } else {
-                foreach ($validate->errors() as $error) {
-                    echo '<div class="alert alert-danger"><ul><li>' . $error . '</li></ul></div>';
+    if (isset($_GET['id'])) {
+        $id = $_GET['id'];
+        $users = Database::getInstance()->get('users', ['id', '=', $id]);
+        foreach ($users->results() as $result) {
+            $username = $result->username;
+            $status = $result->status;
+        }
+        if (Input::exists()) {
+            $validate = new Validate();
+            $validate->check($_POST, [
+                'username' => [
+                    'required' => true,
+                    'min' => 2
+                ],
+                'status' => [
+                    'required' => true,
+                    'min' => 10
+                ]
+            ]);
+            if (Token::check(Input::get('token'))) {
+                if ($validate->passed()) {
+                    $user->update([
+                        'username' => Input::get('username'),
+                        'status' => Input::get('status')
+                    ], $id);
+                    Redirect::to('index.php');
+                    Session::flash('success', 'Профиль обновлен');
+                    echo "<div class='alert alert-success'>" . Session::flash('success') . "</div>";
+                } else {
+                    foreach ($validate->errors() as $error) {
+                        echo '<div class="alert alert-danger"><ul><li>' . $error . '</li></ul></div>';
+                    }
                 }
             }
         }
     }
+}else{
+    $user->logout();
+    Redirect::to('../index.php');
 }
+
+
 ?>
 
 <!DOCTYPE html>
